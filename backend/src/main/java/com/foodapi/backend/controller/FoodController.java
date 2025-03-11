@@ -41,7 +41,7 @@ public class FoodController {
     }
 
     @GetMapping("/{id}")
-    public FoodResponse readFood(@PathVariable String id) {
+    public FoodResponse readFood(@PathVariable String id)  {
         return foodService.readFood(id);
     }
 
