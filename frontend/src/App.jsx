@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useContext } from "react";
+import Menubar from "./components/Menubar/Menubar";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Contact from "./pages/Contact/Contact";
+import ExploreFood from "./pages/ExploreFood/ExploreFood";
+import FoodDetails from "./pages/FoodDetails/FoodDetails";
+import Cart from "./pages/Cart/Cart";
+import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import { ToastContainer } from "react-toastify";
+import MyOrders from "./pages/MyOrders/MyOrders";
+import { StoreContext } from "./context/StoreContext";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const { token } = useContext(StoreContext);
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <Menubar />
+      <ToastContainer />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/explore" element={<ExploreFood />} />
+        <Route path="/food/:id" element={<FoodDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/order" element={token ? <PlaceOrder /> : <Login />} />
+        <Route path="/login" element={token ? <Home /> : <Login />} />
+        <Route path="/register" element={token ? <Home /> : <Register />} />
+        <Route path="/myorders" element={token ? <MyOrders /> : <Login />} />
+      </Routes>
+    </div>
+  );
+};
 
-export default App
+export default App;
