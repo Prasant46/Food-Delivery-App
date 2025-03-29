@@ -4,12 +4,16 @@ import com.foodapi.backend.entity.UserEntity;
 import com.foodapi.backend.io.UserRequest;
 import com.foodapi.backend.io.UserResponse;
 import com.foodapi.backend.repository.UserRepository;
+import com.foodapi.backend.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;

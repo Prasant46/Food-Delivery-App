@@ -3,6 +3,7 @@ package com.foodapi.backend.service;
 import com.foodapi.backend.entity.CartEntity;
 import com.foodapi.backend.io.CartRequest;
 import com.foodapi.backend.io.CartResponse;
+import com.foodapi.backend.repository.CartRespository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

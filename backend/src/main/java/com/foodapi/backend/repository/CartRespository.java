@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CartRepository extends MongoRepository<CartEntity, String> {
+public interface CartRespository extends MongoRepository<CartEntity, String> {
 
     Optional<CartEntity> findByUserId(String userId);
 

@@ -1,5 +1,6 @@
 package com.foodapi.backend.io;
 
+import com.foodapi.backend.io.OrderItem;
 import lombok.Builder;
 import lombok.Data;
 

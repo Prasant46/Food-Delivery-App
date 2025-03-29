@@ -1,5 +1,6 @@
 package com.foodapi.backend.controller;
 
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.foodapi.backend.io.FoodRequest;
@@ -7,6 +8,8 @@ import com.foodapi.backend.io.FoodResponse;
 import com.foodapi.backend.service.FoodService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
@@ -23,7 +26,7 @@ public class FoodController {
 
     @PostMapping
     public FoodResponse addFood(@RequestPart("food") String foodString,
-                                @RequestPart("file") MultipartFile file) {
+                                @RequestPart("file")MultipartFile file) {
         ObjectMapper objectMapper = new ObjectMapper();
         FoodRequest request = null;
         try {
@@ -41,7 +44,7 @@ public class FoodController {
     }
 
     @GetMapping("/{id}")
-    public FoodResponse readFood(@PathVariable String id)  {
+    public FoodResponse readFood(@PathVariable String id) {
         return foodService.readFood(id);
     }
 

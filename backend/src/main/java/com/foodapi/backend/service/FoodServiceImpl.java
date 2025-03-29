@@ -1,9 +1,9 @@
-package com.foodapi.backend.service;
 
 import com.foodapi.backend.entity.FoodEntity;
 import com.foodapi.backend.io.FoodRequest;
 import com.foodapi.backend.io.FoodResponse;
 import com.foodapi.backend.repository.FoodRepository;
+import com.foodapi.backend.service.FoodService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,13 +18,12 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 import java.io.IOException;
-import java.security.Provider;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class FoodServiceImpl implements FoodService{
+public class FoodServiceImpl implements FoodService {
 
     @Autowired
     private S3Client s3Client;
