@@ -1,0 +1,31 @@
+spring.application.name=foodiesapi
+
+#mongodb configuration
+spring.data.mongodb.uri=mongodb+srv://<username>:<password>@<cluster-url>/<database>?retryWrites=true&w=majority&appName=<app-name>
+spring.data.mongodb.auto-index-creation=true
+
+# MongoDB connection pool settings
+spring.data.mongodb.connection-pool-min-size=5
+spring.data.mongodb.connection-pool-max-size=20
+spring.data.mongodb.connection-pool-max-wait-time=10000
+spring.data.mongodb.connection-pool-max-idle-time=60000
+
+# MongoDB timeout settings
+spring.data.mongodb.socket-timeout=20000
+spring.data.mongodb.connect-timeout=10000
+spring.data.mongodb.max-idle-time=60000
+spring.data.mongodb.server-selection-timeout=15000
+
+#aws s3 configuration
+aws.access.key=<your-aws-access-key>
+aws.secret.key=<your-aws-secret-key>
+aws.region=<your-aws-region>
+aws.s3.bucketname=<your-s3-bucket-name>
+
+#jwt configuration
+jwt.secret.key=<your-jwt-secret-key>
+jwt.expiration=86400000
+
+#razorpay configuration
+razorpay_key=<your-razorpay-key>
+razorpay_secret=<your-razorpay-secret>

@@ -1,0 +1,69 @@
+# IDE specific files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+# Dependencies
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/target/
+**/build/
+
+# Logs
+**/logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment files
+**/.env
+**/.env.*
+**/application.properties
+**/application-*.properties
+backend/src/main/resources/application.properties
+
+# Maven specific
+**/target/
+**/pom.xml.tag
+**/pom.xml.releaseBackup
+**/pom.xml.versionsBackup
+**/pom.xml.next
+**/release.properties
+**/dependency-reduced-pom.xml
+**/buildNumber.properties
+**/.mvn/timing.properties
+**/.mvn/wrapper/maven-wrapper.jar
+
+# Local development specific
+*.local
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Package files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# AWS credentials
+**/aws.properties
+**/aws.yml
+
+# Other sensitive files
+**/secrets.json
+**/secrets.yml
+**/secrets.properties
