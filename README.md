@@ -4,7 +4,7 @@ A feature-rich **Full-Stack Food Delivery Application** where users can browse f
 
 ---
 
-## 🔗 Live Demo
+## 🔗 Live Demo(Open in desktop/laptop for better view) 
 
 - **User App**: [Live Food App](https://food-frontend1.netlify.app/)
 - **Admin Panel**: [Live Admin Panel](https://food-admin1.netlify.app/)
