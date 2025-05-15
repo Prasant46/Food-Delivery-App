@@ -6,8 +6,8 @@ A feature-rich **Full-Stack Food Delivery Application** where users can browse f
 
 ## 🔗 Live Demo
 
-- **User App**: [Live Food App](http://food-frontend.s3-website.eu-north-1.amazonaws.com/)
-- **Admin Panel**: [Live Admin Panel](http://food-admin.s3-website.eu-north-1.amazonaws.com/)
+- **User App**: [Live Food App](https://food-frontend1.netlify.app/)
+- **Admin Panel**: [Live Admin Panel](https://food-admin1.netlify.app/)
 
 ---
 
