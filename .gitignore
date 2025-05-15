@@ -7,13 +7,20 @@
 *.sln
 *.sw?
 
-
 # Dependencies
+node_modules/
+frontend/node_modules/
+adminPanel_frontend/node_modules/
 **/node_modules/
 **/dist/
 **/dist-ssr/
 **/target/
 **/build/
+
+# Backend specific
+backend/src/main/resources/application.properties
+backend/src/main/resources/application-*.properties
+backend/target/
 
 # Logs
 **/logs
@@ -25,11 +32,10 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Environment files
+.env
+.env.*
 **/.env
 **/.env.*
-**/application.properties
-**/application-*.properties
-backend/src/main/resources/application.properties
 
 # Maven specific
 **/target/
