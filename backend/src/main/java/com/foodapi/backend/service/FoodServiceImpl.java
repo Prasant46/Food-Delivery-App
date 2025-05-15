@@ -1,3 +1,4 @@
+package com.foodapi.backend.service;
 
 import com.foodapi.backend.entity.FoodEntity;
 import com.foodapi.backend.io.FoodRequest;

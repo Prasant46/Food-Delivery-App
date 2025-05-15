@@ -54,9 +54,7 @@ public class JwtUtil {
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
-    }
-
-    private Claims extractAllClaims(String token) {
+    }    private Claims extractAllClaims(String token) {
         try {
             return Jwts.parserBuilder()
                     .setSigningKey(getSigningKey())
@@ -64,18 +62,31 @@ public class JwtUtil {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
-            throw new RuntimeException("JWT Token has expired", e);
+            // Instead of throwing a runtime exception, set expired claim
+            Claims claims = e.getClaims();
+            claims.put("expired", true);
+            return claims;
         } catch (JwtException e) {
             throw new RuntimeException("Invalid JWT Token", e);
         }
     }
 
-    private boolean isTokenExpired(String token) {
-        return extractExpiration(token).before(new Date());
+    public boolean isTokenExpiredByException(String token) {
+        try {
+            Claims claims = extractAllClaims(token);
+            return claims.containsKey("expired") && Boolean.TRUE.equals(claims.get("expired"));
+        } catch (Exception e) {
+            return true;
+        }
     }
 
-    public boolean validateToken(String token, UserDetails userDetails) {
+    private boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }    public boolean validateToken(String token, UserDetails userDetails) {
+        if (isTokenExpiredByException(token)) {
+            return false;
+        }
         final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return username.equals(userDetails.getUsername());
     }
 }

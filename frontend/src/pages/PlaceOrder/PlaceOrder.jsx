@@ -50,7 +50,7 @@ const PlaceOrder = () => {
         description: item.description,
         name: item.name,
       })),
-      amount: total.toFixed(2),
+      amount: Math.round(total * 100), // Convert to paise before sending to backend
       orderStatus: "Preparing",
     };
 
@@ -70,7 +70,7 @@ const PlaceOrder = () => {
   const initiateRazorpayPayment = (order) => {
     const options = {
       key: RAZORPAY_KEY,
-      amount: order.amount, //Convert to paise
+      amount: order.amount, // Amount is already in paise from the backend
       currency: "INR",
       name: "Food Land",
       description: "Food order payment",
@@ -293,6 +293,14 @@ const PlaceOrder = () => {
                   >
                     <option value="">Choose...</option>
                     <option>Karnataka</option>
+                    <option>Maharashtra</option>
+                    <option>Tamil Nadu</option>
+                    <option>Kerala</option>
+                    <option>Andhra Pradesh</option>
+                    <option>Telangana</option>
+                    <option>Gujarat</option>
+                    <option>Delhi</option>
+                    <option>Assam</option>
                   </select>
                 </div>
 
@@ -309,10 +317,80 @@ const PlaceOrder = () => {
                     onChange={onChangeHandler}
                   >
                     <option value="">Choose...</option>
-                    <option>Banglore</option>
+                    {data.state === "Karnataka" && (
+                      <>
+                        <option>Bangalore</option>
+                        <option>Mysore</option>
+                        <option>Hubli</option>
+                        <option>Mangalore</option>
+                      </>
+                    )}
+                    {data.state === "Maharashtra" && (
+                      <>
+                        <option>Mumbai</option>
+                        <option>Pune</option>
+                        <option>Nagpur</option>
+                        <option>Nashik</option>
+                      </>
+                    )}
+                    {data.state === "Tamil Nadu" && (
+                      <>
+                        <option>Chennai</option>
+                        <option>Coimbatore</option>
+                        <option>Madurai</option>
+                        <option>Salem</option>
+                      </>
+                    )}
+                    {data.state === "Kerala" && (
+                      <>
+                        <option>Thiruvananthapuram</option>
+                        <option>Kochi</option>
+                        <option>Kozhikode</option>
+                        <option>Thrissur</option>
+                      </>
+                    )}
+                    {data.state === "Andhra Pradesh" && (
+                      <>
+                        <option>Visakhapatnam</option>
+                        <option>Vijayawada</option>
+                        <option>Guntur</option>
+                        <option>Tirupati</option>
+                      </>
+                    )}
+                    {data.state === "Telangana" && (
+                      <>
+                        <option>Hyderabad</option>
+                        <option>Warangal</option>
+                        <option>Nizamabad</option>
+                        <option>Karimnagar</option>
+                      </>
+                    )}
+                    {data.state === "Gujarat" && (
+                      <>
+                        <option>Ahmedabad</option>
+                        <option>Surat</option>
+                        <option>Vadodara</option>
+                        <option>Rajkot</option>
+                      </>
+                    )}
+                    {data.state === "Delhi" && (
+                      <>
+                        <option>New Delhi</option>
+                        <option>North Delhi</option>
+                        <option>South Delhi</option>
+                        <option>East Delhi</option>
+                      </>
+                    )}
+                    {data.state === "Assam" && (
+                      <>
+                        <option>Guwahati</option>
+                        <option>Silchar</option>
+                        <option>Dibrugarh</option>
+                        <option>Jorhat</option>
+                      </>
+                    )}
                   </select>
                 </div>
-
                 <div className="col-md-3">
                   <label htmlFor="zip" className="form-label">
                     Zip

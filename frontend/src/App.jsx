@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Menubar from "./components/Menubar/Menubar";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Contact from "./pages/Contact/Contact";
 import ExploreFood from "./pages/ExploreFood/ExploreFood";
@@ -12,9 +13,17 @@ import Register from "./components/Register/Register";
 import { ToastContainer } from "react-toastify";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import { StoreContext } from "./context/StoreContext";
+import { setupAxiosInterceptors } from "./service/axiosConfig";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
-  const { token } = useContext(StoreContext);
+  const { token, setToken, setQuantities } = useContext(StoreContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setupAxiosInterceptors(navigate, setToken, setQuantities);
+  }, [navigate, setToken, setQuantities]);
+
   return (
     <div>
       <Menubar />
@@ -24,11 +33,38 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/explore" element={<ExploreFood />} />
         <Route path="/food/:id" element={<FoodDetails />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/order" element={token ? <PlaceOrder /> : <Login />} />
-        <Route path="/login" element={token ? <Home /> : <Login />} />
-        <Route path="/register" element={token ? <Home /> : <Register />} />
-        <Route path="/myorders" element={token ? <MyOrders /> : <Login />} />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/order"
+          element={
+            <ProtectedRoute>
+              <PlaceOrder />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/" /> : <Login />}
+        />
+        <Route
+          path="/register"
+          element={token ? <Navigate to="/" /> : <Register />}
+        />
+        <Route
+          path="/myorders"
+          element={
+            <ProtectedRoute>
+              <MyOrders />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );
